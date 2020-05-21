@@ -16,10 +16,20 @@ I am exported the
 
 ## Install and Importing Package
 
-> need to make a package once this is further along, not quite there yet.
+To install the package, within the project directory, run:
 
 ```terminal
-npm i n96-postgres
+npm i n96-postgres --save
+```
+
+To import in project
+
+```typescript
+import * as anythingYouLike from "n96-postgres";
+
+// or
+
+import { sqlBuilder } from "n96-postgres";
 ```
 
 ## SQL Builder
