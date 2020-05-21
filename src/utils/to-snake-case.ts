@@ -1,6 +1,6 @@
 import { lowercaseFirstLetter, splitByUppercase } from "./strings";
 
-export const toSnakeCase = (s: string) => {
+export const toSnakeCase = (s: string): string => {
   const sParts = splitByUppercase(s);
   const lowerCaseParts = sParts.map(lowercaseFirstLetter);
   const snakeCase = lowerCaseParts.join("_");
