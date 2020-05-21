@@ -8,7 +8,7 @@ export interface IArgs {
   separator: "," | "AND" | "OR";
 }
 
-export const combine = (args: IArgs) => {
+export const combine = (args: IArgs): SQLStatement => {
   const sql =  SQL``;
   const total = args.statements.length;
   const separator = args.separator;
