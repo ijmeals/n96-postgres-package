@@ -13,10 +13,10 @@ export interface IData { [col: string]: any; } // tslint:disable-line: no-any
 
 export interface IArgs {
   tableName: string;
-  data: IData[]; // tslint:disable-line: no-any
+  data: IData[];
 }
 
-export const insert = (args: IArgs) => {
+export const insert = (args: IArgs): SQLStatement => {
   const sql = SQL``;
   const tableName = args.tableName;
   const columnNames = tableColumnNames(args.data);
