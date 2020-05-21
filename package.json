@@ -1,0 +1,27 @@
+{
+  "name": "n96-postgres",
+  "version": "0.1.0",
+  "description": "pg wrapper with helpers",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "build": "rm -rf lib/* && tsc",
+    "lint": "tslint -p tsconfig.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^7.14.0",
+    "pg-native": "^3.0.0",
+    "sql-template-strings": "^2.2.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/pg": "^7.11.1",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3"
+  }
+}
