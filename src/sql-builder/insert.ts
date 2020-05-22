@@ -21,7 +21,7 @@ export const insert = (args: IArgs): SQLStatement => {
   const tableName = args.tableName;
   const columnNames = tableColumnNames(args.data);
   const insertColumns = columnNames.join(", ");
-  const insertStatements = recordValues(args.data, columnNames);
+  const insertStatements = insertRecords(columnNames, args.data);
   const insertValues = combine({ statements: insertStatements, separator: "," });
 
   sql.append(`INSERT INTO ${tableName} (${insertColumns}) VALUES `).append(insertValues);
@@ -36,15 +36,14 @@ const tableColumnNames = (data: IData[]) => {
   return snakeCasedKeys;
 };
 
-const recordValues = (data: IData[], dbColumnNames: string[]): SQLStatement[] => {
-  const records = data.map((o: IData) => {
-    const values: SQLStatement[] = dbColumnNames.map(pluck.bind(undefined, o));
-    const joinedValue = combine({ statements: values, separator: "," });
+const insertRecords = (columnNames: string[], data: IData[]): SQLStatement[] =>
+  data.map(insertRecord.bind(undefined, columnNames));
 
-    return SQL`(`.append(joinedValue).append(SQL`)`);
-  });
+const insertRecord = (columnNames: string[], obj: IData): SQLStatement => {
+  const values: SQLStatement[] = columnNames.map(pluck.bind(undefined, obj));
+  const joinedValue = combine({ statements: values, separator: "," });
 
-  return records;
+  return SQL`(`.append(joinedValue).append(SQL`)`);
 };
 
 const pluck = (obj: IData, key: string) => SQL`${obj[toCamelCase(key)]}`;
