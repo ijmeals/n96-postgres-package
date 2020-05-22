@@ -3,13 +3,12 @@ import {
   SQLStatement,
 } from "sql-template-strings";
 
-import {
-  toCamelCase,
-  toSnakeCase,
-} from "./../utils";
 import { combine } from "./combine";
-
-export interface IData { [col: string]: any; } // tslint:disable-line: no-any
+import {
+  pluck,
+  tableColumnNames,
+} from "./helpers";
+import { IData } from "./types";
 
 export interface IArgs {
   tableName: string;
@@ -29,13 +28,6 @@ export const insert = (args: IArgs): SQLStatement => {
   return sql;
 };
 
-const tableColumnNames = (data: IData[]) => {
-  const objectKeys = Object.keys(data[0]);
-  const snakeCasedKeys = objectKeys.map(toSnakeCase);
-
-  return snakeCasedKeys;
-};
-
 const insertRecords = (columnNames: string[], data: IData[]): SQLStatement[] =>
   data.map(insertRecord.bind(undefined, columnNames));
 
@@ -45,5 +37,3 @@ const insertRecord = (columnNames: string[], obj: IData): SQLStatement => {
 
   return SQL`(`.append(joinedValue).append(SQL`)`);
 };
-
-const pluck = (obj: IData, key: string) => SQL`${obj[toCamelCase(key)]}`;
