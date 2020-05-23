@@ -19,6 +19,7 @@ export const logSlowQuery = (args: IArgs) => {
   const obj = {
     query: args.sql.text,
     queryValues: args.sql.values,
+    totalTime,
   };
 
   args.logger("SLOW-QUERY", obj);

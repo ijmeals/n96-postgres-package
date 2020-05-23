@@ -13,8 +13,8 @@ const connectionProps = {
 };
 
 test("test a basic querying without passing in a pool client", async () => {
-  const dbConn = conn(connectionProps);
-  const data = await dbConn.query<[{ num: number }]>({ sql: SQL`SELECT 1 AS num`, tag: "Test" });
+  const dbConn = conn({ ...connectionProps });
+  const data = await dbConn.query<[{ numCol: number }]>({ sql: SQL`SELECT 1 AS num_col`, tag: "Test" });
 
-  expect(data[0].num).toBe(1);
+  expect(data[0].numCol).toBe(1);
 });

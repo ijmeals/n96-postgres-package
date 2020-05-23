@@ -3,12 +3,10 @@ import {
   SQLStatement,
 } from "sql-template-strings";
 
+import { IData } from "./../types";
+import { tableColumnNames } from "./../utils";
 import { combine } from "./combine";
-import {
-  pluck,
-  tableColumnNames,
-} from "./helpers";
-import { IData } from "./types";
+import { pluck } from "./helpers";
 
 export interface IArgs {
   tableName: string;

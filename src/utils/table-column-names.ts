@@ -1,5 +1,5 @@
-import { toSnakeCase } from "./../../utils";
 import { IData } from "./../types";
+import { toSnakeCase } from "./to-snake-case";
 
 export const tableColumnNames = (data: IData[]) => {
   const objectKeys = Object.keys(data[0]);

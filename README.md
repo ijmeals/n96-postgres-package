@@ -46,4 +46,8 @@ There are cases where it is nice to have some help when constructing a SQL state
 
 ## Conn (short for connection)
 
-This module is use to query the database.
+This module is use to query the database. By default, it will create a `pool` and open and close a `client` per query. There are times when you would not want that, and this package accounts for those situations.
+
+The main function from the `conn` module is `query`. This allows a SQL Statement Query to be passed in and it then returns the results as an array of objects. The column names will be automatically converted from snake casing to camel casing, removing the need to alias the columns in the SELECT clause.
+
+The `pool` is also exposed in this module for the times when managing the `client` is necessary such as managing a complete transaction.

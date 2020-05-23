@@ -1,13 +1,15 @@
 import { SQL } from "sql-template-strings";
 
-import { toSnakeCase } from "./../utils";
+import { IData } from "./../types";
+import {
+  tableColumnNames,
+  toSnakeCase,
+} from "./../utils";
 import { combine } from "./combine";
-import { tableColumnNames } from "./helpers";
 import {
   IArgs as IInsertArgs,
   insert,
 } from "./insert";
-import { IData } from "./types";
 
 export interface IArgs extends IInsertArgs {
   do: "UPDATE" | "NOTHING";
