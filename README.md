@@ -44,7 +44,7 @@ There are cases where it is nice to have some help when constructing a SQL state
 - [insert on conflict](./docs/sql-builder/insert-on-conflict.md)
 - [combining an array of SQL statements](./docs/sql-builder/combine.md)
 
-## Conn (short for connection)
+## conn (short for connection)
 
 This module is use to query the database. By default, it will create a `pool` and open and close a `client` per query. There are times when you would not want that, and this package accounts for those situations.
 
@@ -52,30 +52,5 @@ The main function from the `conn` module is `query`. This allows a SQL Statement
 
 The `pool` is also exposed in this module for the times when managing the `client` is necessary such as managing a complete transaction.
 
-## Basic Example
-
-```TypeScript
-import { conn, SQL } from "n96-postgres";
-const db = conn({ ...connectionProps });
-
-interface IQueryResult {
-  colNum: number;
-}
-
-const data = await dbConn.query<IQueryResult[]>({
-  tag: "Test"
-  sql: SQL`SELECT 1 AS col_num`,
-});
-
-// data[0].colNumber === 1
-```
-
-The SQL query, from the example above, that is ran against the database would look like:
-
-```SQL
--- User: <this value is based off the db user passed into conn()>
--- Tag: Test
-SELECT 1 AS col_num
-```
-
-The `tag` property is to provide insight as to where in the code base this query was called from. A helpful way, especially when noticing long running queries in the `pg_stat_activity` table. It is also useful to see what "user" is running this query. Is it a developer, or is it coming from a live STAGING or PRODUCTION environment.
+- [Basic Querying Examples](./docs/conn/basic-querying-example.md)
+- [How to Log Slow Queries](./docs/conn/how-to-log-slow-queries.md)
