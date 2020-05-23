@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest --setupFiles dotenv/config",
     "build": "rm -rf lib/* && tsc",
     "lint": "tslint -p tsconfig.json"
   },
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.23",
     "@types/pg": "^7.11.1",
+    "dotenv": "^8.2.0",
     "jest": "^24.9.0",
     "ts-jest": "^24.2.0",
     "tslint": "^5.20.0",

@@ -31,7 +31,7 @@ const updateStatement = (data: IData[], conflictColumns: string[]) => {
   const statements = updateColumns.map((col: string) => SQL``.append(`${col} = EXCLUDED.${col}`));
 
   return SQL` `.append(combine({ statements, separator: ","}));
-}
+};
 
 const removeConflictColumns = (insertColumn: string, conflictColumns: string[]) =>
   !conflictColumns.includes(insertColumn);

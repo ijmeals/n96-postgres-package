@@ -33,7 +33,7 @@ import * as anythingYouLike from "n96-postgres";
 
 // or
 
-import { sqlBuilder } from "n96-postgres";
+import { conn, sqlBuilder } from "n96-postgres";
 ```
 
 ## SQL Builder
@@ -43,3 +43,7 @@ There are cases where it is nice to have some help when constructing a SQL state
 - [insert](./docs/sql-builder/insert.md)
 - [insert on conflict](./docs/sql-builder/insert-on-conflict.md)
 - [combining an array of SQL statements](./docs/sql-builder/combine.md)
+
+## Conn (short for connection)
+
+This module is use to query the database.
