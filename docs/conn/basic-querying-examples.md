@@ -22,7 +22,7 @@ The SQL query, from the example above, that is ran against the database would lo
 
 ```SQL
 -- User: <this value is based off the db user passed into conn()>
--- Tag: Test
+-- Tag: SELECTing data example
 SELECT 1 AS col_num
 ```
 
@@ -50,4 +50,10 @@ const data = await dbConn.insert<IQueryResult[]>({
 // data[0].col === 2
 ```
 
-The SQL that is ran on the database would be: `INSERT INTO test_tbl (col_one, col_two) VALUES ($1 , $2) , ($3 , $4) RETURNING *`
+The SQL query, from the example above, that is ran against the database would look like:
+
+```SQL
+-- User: <this value is based off the db user passed into conn()>
+-- Tag: INSERTing data example
+INSERT INTO test_tbl (col_one, col_two) VALUES ($1 , $2) , ($3 , $4) RETURNING *
+```

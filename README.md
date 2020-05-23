@@ -52,5 +52,5 @@ The main function from the `conn` module is `query`. This allows a SQL Statement
 
 The `pool` is also exposed in this module for the times when managing the `client` is necessary such as managing a complete transaction.
 
-- [Basic Querying Examples](./docs/conn/basic-querying-example.md)
+- [Basic Querying Examples](./docs/conn/basic-querying-examples.md)
 - [How to Log Slow Queries](./docs/conn/how-to-log-slow-queries.md)
