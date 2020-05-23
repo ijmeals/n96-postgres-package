@@ -1,13 +1,15 @@
 import { SQL } from "sql-template-strings";
 
-import { toSnakeCase } from "./../utils";
+import { IData } from "./../types";
+import {
+  tableColumnNames,
+  toSnakeCase,
+} from "./../utils";
 import { combine } from "./combine";
-import { tableColumnNames } from "./helpers";
 import {
   IArgs as IInsertArgs,
   insert,
 } from "./insert";
-import { IData } from "./types";
 
 export interface IArgs extends IInsertArgs {
   do: "UPDATE" | "NOTHING";
@@ -31,7 +33,7 @@ const updateStatement = (data: IData[], conflictColumns: string[]) => {
   const statements = updateColumns.map((col: string) => SQL``.append(`${col} = EXCLUDED.${col}`));
 
   return SQL` `.append(combine({ statements, separator: ","}));
-}
+};
 
 const removeConflictColumns = (insertColumn: string, conflictColumns: string[]) =>
   !conflictColumns.includes(insertColumn);
