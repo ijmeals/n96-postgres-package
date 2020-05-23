@@ -52,5 +52,25 @@ The main function from the `conn` module is `query`. This allows a SQL Statement
 
 The `pool` is also exposed in this module for the times when managing the `client` is necessary such as managing a complete transaction.
 
+### Using `conn`
+
+```TypeScript
+import { conn } from "./../src/conn";
+
+const connectionProps = {
+  driver: "pg",
+  user: process.env.APP_DB_USER,
+  password: process.env.APP_DB_PASSWORD,
+  host: process.env.APP_DB_HOST,
+  port: Number(process.env.APP_DB_PORT),
+  database: process.env.APP_DB_NAME,
+  schema: "public",
+};
+
+const db = conn(connectionProps);
+```
+
+### conn Examples
+
 - [Basic Querying Examples](./docs/conn/basic-querying-examples.md)
 - [How to Log Slow Queries](./docs/conn/how-to-log-slow-queries.md)

@@ -4,7 +4,7 @@
 
 ```TypeScript
 import { conn, SQL } from "n96-postgres";
-const db = conn({ ...connectionProps });
+const db = conn(connectionProps);
 
 interface IQueryResult {
   colNum: number;
@@ -36,7 +36,7 @@ Here is an example:
 
 ```TypeScript
 import { conn, SQL } from "n96-postgres";
-const db = conn({ ...connectionProps });
+const db = conn(connectionProps);
 
 interface IQueryResult {
   col: number;
@@ -46,8 +46,6 @@ const data = await dbConn.insert<IQueryResult[]>({
   tag: "INSERTing data example"
   sql: SQL`INSERT INTO tbl_name (col) VALUES (${val})`,
 });
-
-// data[0].col === 2
 ```
 
 The SQL query, from the example above, that is ran against the database would look like:
@@ -55,5 +53,5 @@ The SQL query, from the example above, that is ran against the database would lo
 ```SQL
 -- User: <this value is based off the db user passed into conn()>
 -- Tag: INSERTing data example
-INSERT INTO test_tbl (col_one, col_two) VALUES ($1 , $2) , ($3 , $4) RETURNING *
+INSERT INTO test_tbl (col) VALUES ($1) RETURNING *
 ```
