@@ -1,6 +1,6 @@
 {
   "name": "n96-postgres",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "pg wrapper with helpers",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
