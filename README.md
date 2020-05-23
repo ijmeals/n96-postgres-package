@@ -51,3 +51,31 @@ This module is use to query the database. By default, it will create a `pool` an
 The main function from the `conn` module is `query`. This allows a SQL Statement Query to be passed in and it then returns the results as an array of objects. The column names will be automatically converted from snake casing to camel casing, removing the need to alias the columns in the SELECT clause.
 
 The `pool` is also exposed in this module for the times when managing the `client` is necessary such as managing a complete transaction.
+
+## Basic Example
+
+```TypeScript
+import { conn, SQL } from "n96-postgres";
+const db = conn({ ...connectionProps });
+
+interface IQueryResult {
+  colNum: number;
+}
+
+const data = await dbConn.query<IQueryResult[]>({
+  tag: "Test"
+  sql: SQL`SELECT 1 AS col_num`,
+});
+
+// data[0].colNumber === 1
+```
+
+The SQL query, from the example above, that is ran against the database would look like:
+
+```SQL
+-- User: <this value is based off the db user passed into conn()>
+-- Tag: Test
+SELECT 1 AS col_num
+```
+
+The `tag` property is to provide insight as to where in the code base this query was called from. A helpful way, especially when noticing long running queries in the `pg_stat_activity` table. It is also useful to see what "user" is running this query. Is it a developer, or is it coming from a live STAGING or PRODUCTION environment.
