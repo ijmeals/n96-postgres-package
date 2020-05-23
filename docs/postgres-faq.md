@@ -10,4 +10,10 @@ This will return the path on the machine where `postgres.conf` is located.
 
 ### What is SHOW
 
-SHOW shows the value of a run-time parameter.
+SHOW **name** returns the value of a run-time parameter.
+
+To see all the run-time parameters:
+
+```SQL
+SHOW ALL
+```

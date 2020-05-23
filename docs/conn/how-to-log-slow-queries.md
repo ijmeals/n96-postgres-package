@@ -93,7 +93,7 @@ const data = await dbConn.query<IQueryResult[]>({
 });
 ```
 
-_if you setup logging when first calling `conn(...)`, and included a logger function, you do not need to pass it again unless you want to override what you originally passed into `conn`.
+_if you setup logging when first calling `conn(...)`, and included a logger function, you do not need to pass it again unless you want to override what you originally passed into `conn`._
 
 ### What is Logged
 

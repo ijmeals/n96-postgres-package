@@ -18,7 +18,7 @@ const data = await dbConn.query<IQueryResult[]>({
 // data[0].colNumber === 1
 ```
 
-The SQL query, from the example above, that is ran against the database would look like:
+The SQL query, from the above example, would look like:
 
 ```SQL
 -- User: <this value is based off the db user passed into conn()>
@@ -46,9 +46,11 @@ const data = await dbConn.insert<IQueryResult[]>({
   tag: "INSERTing data example"
   sql: SQL`INSERT INTO tbl_name (col) VALUES (${val})`,
 });
+
+// data[0].col
 ```
 
-The SQL query, from the example above, that is ran against the database would look like:
+The SQL query, from the above example, would look like:
 
 ```SQL
 -- User: <this value is based off the db user passed into conn()>
