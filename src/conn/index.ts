@@ -2,16 +2,32 @@ import * as pg from "pg";
 
 import { query } from "./query";
 import { returningClause } from "./returning-clause";
-import { IQueryArgs } from "./types";
+import {
+  IOptionalArgs,
+  IQueryArgs,
+} from "./types";
 
-export const conn = (dbConfig: pg.ClientConfig) => {
+export interface IConn {
+  pool: pg.Pool;
+  query<T>(args: IQueryArgs): Promise<T>;
+  insert<T>(args: IQueryArgs): Promise<T>;
+  update<T>(args: IQueryArgs): Promise<T>;
+  delete<T>(args: IQueryArgs): Promise<T>;
+}
+
+export const conn = (dbConfig: pg.ClientConfig, opts?: IOptionalArgs): IConn => {
   const pool = new pg.Pool(dbConfig);
+  const defaultQueryArgs = {
+    ...opts,
+    pool,
+    dbUser: dbConfig.user,
+  };
 
   return {
     pool,
-    query: <T>(args: IQueryArgs): Promise<T> => query({ ...args, pool, dbUser: dbConfig.user }),
-    insert: <T>(args: IQueryArgs): Promise<T> => returningClause({ ...args, pool, dbUser: dbConfig.user }),
-    update: <T>(args: IQueryArgs): Promise<T> => returningClause({ ...args, pool, dbUser: dbConfig.user }),
-    delete: <T>(args: IQueryArgs): Promise<T> => returningClause({ ...args, pool, dbUser: dbConfig.user }),
+    query: <T>(args: IQueryArgs): Promise<T> => query({ ...defaultQueryArgs, ...args }),
+    insert: <T>(args: IQueryArgs): Promise<T> => returningClause({ ...defaultQueryArgs, ...args }),
+    update: <T>(args: IQueryArgs): Promise<T> => returningClause({ ...defaultQueryArgs, ...args }),
+    delete: <T>(args: IQueryArgs): Promise<T> => returningClause({ ...defaultQueryArgs, ...args }),
   };
 };

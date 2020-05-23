@@ -14,7 +14,7 @@ const MILLISECOND_IN_SECOND = 10000;
 
 export const logSlowQuery = (args: IArgs) => {
   const totalTime = executionTime(args.startTime, args.endTime);
-  if (totalTime < args.ifExceeds) return;
+  if (isLoggingDisabled() || totalTime < args.ifExceeds) return;
 
   const obj = {
     query: args.sql.text,
@@ -27,3 +27,5 @@ export const logSlowQuery = (args: IArgs) => {
 
 const executionTime = (startTime: number, endTime: number) =>
   (endTime - startTime) / MILLISECOND_IN_SECOND;
+
+const isLoggingDisabled = () => Boolean(process.env.N96_POSTGRES_DISABLE_LOGGING);
