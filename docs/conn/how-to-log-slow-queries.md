@@ -27,8 +27,8 @@ SELECT * FROM pg_stat_statements;
 
 ### Sources
 
-- https://www.postgresql.org/docs/12/pgstatstatements.html
-- https://www.citusdata.com/blog/2019/02/08/the-most-useful-postgres-extension-pg-stat-statements/
+- <https://www.postgresql.org/docs/12/pgstatstatements.html>
+- <https://www.citusdata.com/blog/2019/02/08/the-most-useful-postgres-extension-pg-stat-statements/>
 
 ## Using this Package
 
