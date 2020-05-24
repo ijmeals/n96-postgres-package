@@ -40,7 +40,7 @@ For instance, when querying the `pg_stat_statements` view you will see queries l
 SELECT * FROM tbl WHERE col = ?
 ```
 
-There are times that a query is slow under certain parameters but not others, and by logging the actual specific query, can reduce the spelunking and investigation.
+There are times that a query is slow under certain parameters but not others, and by logging the actual specific query with the params, that can reduce the spelunking and investigation time.
 
 To log slow queries using this package, n96 Postgres Package, there are two ways. One is by setting the configuration when you initally call the `conn` function, and the other is to do it on a query by query basis.
 
@@ -72,12 +72,13 @@ const db = conn(connectionProps, {
   logSlowQueries: {
       ifRunsLoggerThan: 3, // number of seconds, you can also do floats (e.g. 0.01 seconds)
       logger: logger.warn,
-  }});
+  },
+});
 ```
 
 ### Logging by Individual Query
 
-If you want to change the logging settings from what was set when first calling `conn(...)`, or you prefer not to log at all except in one call, you can pass in the `logSlowQueries` into as a second argument.
+If you want to change the logging settings from what was set when first calling `conn(...)`, or you prefer not to log at all but want to for one query, you can pass in the `logSlowQueries` into as a second argument.
 
 Here is an example of that:
 
@@ -101,8 +102,8 @@ The message of the log will be "SLOW-QUERY" and will log the following params:
 
 1. the total time the query took to run
 2. the text version of the query (e.g. `SELECT * FROM tbl WHERE col = ?`)
-3. the parametrize of the query (e.g. [2])
+3. the parametrize of the query (e.g. `[2]`)
 
 ### Disable n96 Postgres Logging Locally
 
-If you want to disable any logging of slow queries when working locally without having to modify any code, add an environment variable "N96_POSTGRES_DISABLE_LOGGING" and set it to false.
+If you want to disable any logging of slow queries when working locally without having to modify any code, add an environment variable "N96_POSTGRES_DISABLE_LOGGING" and set it to true.
