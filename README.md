@@ -38,7 +38,7 @@ import { conn, sqlBuilder } from "n96-postgres";
 
 ## SQL Builder
 
-There are cases where it is nice to have some help when constructing a SQL statement, such as when you have an array of objects that you want inserted into a table.
+There are cases where it is nice to have some help when constructing a SQL Statement, such as when you have an array of objects that you want inserted into a table.
 
 - [insert](./docs/sql-builder/insert.md)
 - [insert on conflict](./docs/sql-builder/insert-on-conflict.md)

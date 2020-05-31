@@ -15,13 +15,11 @@ export interface IArgs {
 
 export const insert = (args: IArgs): SQLStatement => {
   const sql = SQL``;
-  const tableName = args.tableName;
   const columnNames = tableColumnNames(args.data);
-  const insertColumns = columnNames.join(", ");
   const insertStatements = insertRecords(columnNames, args.data);
-  const insertValues = combine({ statements: insertStatements, separator: "," });
+  const values = combine({ statements: insertStatements, separator: "," });
 
-  sql.append(`INSERT INTO ${tableName} (${insertColumns}) VALUES `).append(insertValues);
+  sql.append(`INSERT INTO ${args.tableName} (${columnNames.join(", ")}) VALUES `).append(values);
 
   return sql;
 };

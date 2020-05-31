@@ -55,5 +55,5 @@ The SQL query, from the above example, would look like:
 ```SQL
 -- User: <this value is based off the db user passed into conn()>
 -- Tag: INSERTing data example
-INSERT INTO test_tbl (col) VALUES ($1) RETURNING *
+INSERT INTO tbl_name (col) VALUES ($1) RETURNING *
 ```
