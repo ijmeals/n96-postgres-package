@@ -10,7 +10,7 @@ interface IQueryResult {
   colNum: number;
 }
 
-const data = await dbConn.query<IQueryResult[]>({
+const data = await db.query<IQueryResult[]>({
   tag: "SELECTing data example"
   sql: SQL`SELECT 1 AS col_num`,
 });
@@ -42,7 +42,7 @@ interface IQueryResult {
   col: number;
 }
 
-const data = await dbConn.insert<IQueryResult[]>({
+const data = await db.insert<IQueryResult[]>({
   tag: "INSERTing data example"
   sql: SQL`INSERT INTO tbl_name (col) VALUES (${val})`,
 });
