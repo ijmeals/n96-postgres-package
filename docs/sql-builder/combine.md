@@ -7,12 +7,15 @@ This is useful when having a set of conditionals that make up all or part of the
 ```typescript
 import { sqlBuilder, SQL } from "n96-postgres";
 
-const statements = new Array();
+const whereStatements = new Array();
 
-if (conditionIsTrue) whereClause.push(SQL`col1 = ${val})`)
-if (conditionIsFalse) whereClause.push(SQL`col2 = ${val})`)
-if (conditionIsTrue) whereClause.push(SQL`col3 = ${val})`)
+if (expression) whereStatements.push(SQL`col1 = ${val})`)
+if (expression) whereStatements.push(SQL`col2 = ${val})`)
+if (expression) whereStatements.push(SQL`col3 = ${val})`)
 
-const where: SQLStatement = sqlBuilder.combine({ statements, separator: "AND" });
-const sql: SQLStatement = SQL`SELECT * FROM tbl WHERE `.append(where);
+const whereClause: SQLStatement = sqlBuilder.combine({
+  statements: whereStatements,
+  separator: "AND",
+});
+const sql: SQLStatement = SQL`SELECT * FROM tbl WHERE `.append(whereClause);
 ```

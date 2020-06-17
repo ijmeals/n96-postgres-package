@@ -15,7 +15,7 @@ const data = await dbConn.query<IQueryResult[]>({
   sql: SQL`SELECT 1 AS col_num`,
 });
 
-// data[0].colNumber === 1
+// data[0].colNum === 1
 ```
 
 The SQL query, from the above example, would look like:
