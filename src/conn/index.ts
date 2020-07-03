@@ -16,7 +16,7 @@ export interface IConn {
 }
 
 export const conn = (dbConfig: pg.ClientConfig, opts?: IOptionalArgs): IConn => {
-  const pool = new pg.Pool(dbConfig);
+  const pool = new pg.Pool({ ...dbConfig });
   const defaultQueryArgs = {
     ...opts,
     pool,

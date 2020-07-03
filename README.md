@@ -58,7 +58,6 @@ The `pool` is also exposed in this module for the times when managing the `clien
 import { conn } from "./../src/conn";
 
 const connectionProps = {
-  driver: "pg",
   user: process.env.APP_DB_USER,
   password: process.env.APP_DB_PASSWORD,
   host: process.env.APP_DB_HOST,
