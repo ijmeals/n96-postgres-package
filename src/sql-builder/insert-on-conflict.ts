@@ -3,7 +3,6 @@ import { SQL } from "sql-template-strings";
 import { IData } from "./../types";
 import {
   tableColumnNames,
-  toSnakeCase,
 } from "./../utils";
 import { combine } from "./combine";
 import {
@@ -18,11 +17,10 @@ export interface IArgs extends IInsertArgs {
 
 export const insertOnConflict = (args: IArgs) => {
   const baseQuery = insert(args);
-  const conflictColumns = args.conflictColumns.map(toSnakeCase);
 
-  baseQuery.append(` ON CONFLICT (${conflictColumns.join(",")}) DO ${args.do}`);
+  baseQuery.append(` ON CONFLICT (${args.conflictColumns.join(",")}) DO ${args.do}`);
 
-  if (args.do === "UPDATE") baseQuery.append(updateStatement(args.data, conflictColumns));
+  if (args.do === "UPDATE") baseQuery.append(updateStatement(args.data, args.conflictColumns));
 
   return baseQuery;
 };
@@ -36,4 +34,4 @@ const updateStatement = (data: IData[], conflictColumns: string[]) => {
 };
 
 const removeConflictColumns = (insertColumn: string, conflictColumns: string[]) =>
-  !conflictColumns.includes(toSnakeCase(insertColumn));
+  !conflictColumns.includes(insertColumn);
