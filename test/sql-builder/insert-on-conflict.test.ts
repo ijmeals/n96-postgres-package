@@ -18,7 +18,7 @@ test("on update", () => {
     do: "UPDATE",
     conflictColumns: ["unique"],
   };
-  const expectedSql = "INSERT INTO test_tbl (unique, col_one, col_two) VALUES ($1 , $2 , $3) , ($4 , $5 , $6) ON CONFLICT (unique) DO UPDATE col_one = EXCLUDED.col_one , col_two = EXCLUDED.col_two";
+  const expectedSql = "INSERT INTO test_tbl (unique, col_one, col_two) VALUES ($1 , $2 , $3) , ($4 , $5 , $6) ON CONFLICT (unique) DO UPDATE SET col_one = EXCLUDED.col_one , col_two = EXCLUDED.col_two";
   const actualValue = insertOnConflict(obj);
 
   expect(actualValue.text).toBe(expectedSql);
@@ -67,7 +67,7 @@ test("on update with snake_case_columns", () => {
     do: "UPDATE",
     conflictColumns: ["unique_col"],
   };
-  const expectedSql = "INSERT INTO test_tbl (unique_col, col_one, col_two) VALUES ($1 , $2 , $3) , ($4 , $5 , $6) ON CONFLICT (unique_col) DO UPDATE col_one = EXCLUDED.col_one , col_two = EXCLUDED.col_two";
+  const expectedSql = "INSERT INTO test_tbl (unique_col, col_one, col_two) VALUES ($1 , $2 , $3) , ($4 , $5 , $6) ON CONFLICT (unique_col) DO UPDATE SET col_one = EXCLUDED.col_one , col_two = EXCLUDED.col_two";
   const actualValue = insertOnConflict(obj);
 
   expect(actualValue.text).toBe(expectedSql);
