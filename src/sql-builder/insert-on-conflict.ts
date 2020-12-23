@@ -36,4 +36,4 @@ const updateStatement = (data: IData[], conflictColumns: string[]) => {
 };
 
 const removeConflictColumns = (insertColumn: string, conflictColumns: string[]) =>
-  !conflictColumns.includes(insertColumn);
+  !conflictColumns.includes(toSnakeCase(insertColumn));
