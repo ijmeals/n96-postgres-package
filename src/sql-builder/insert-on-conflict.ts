@@ -27,11 +27,11 @@ export const insertOnConflict = (args: IArgs) => {
 
 const updateStatement = (data: IData[], conflictColumns: string[]) => {
   const allColumns = tableColumnNames(data);
-  const updateColumns = allColumns.filter(removeConflictColumns.bind(undefined, conflictColumns));
+  const updateColumns = allColumns.filter((insertColumn: string) => !conflictColumns.includes(insertColumn));
   const statements = updateColumns.map((col: string) => SQL``.append(`${col} = EXCLUDED.${col}`));
 
-  return SQL` `.append(combine({ statements, separator: ","}));
+  return SQL` SET `.append(combine({ statements, separator: ","}));
 };
 
-const removeConflictColumns = (insertColumn: string, conflictColumns: string[]) =>
+const removeConflictColumns = (conflictColumns: string[], insertColumn: string) =>
   !conflictColumns.includes(insertColumn);
