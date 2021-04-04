@@ -9,6 +9,7 @@ export interface IOptionalArgs {
     ifRunsLoggerThan: Seconds;
     logger?: Logger;
   };
+  schema?: string;
 }
 
 export interface IQueryArgs extends IOptionalArgs {
