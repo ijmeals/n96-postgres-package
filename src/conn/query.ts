@@ -12,7 +12,7 @@ export const query = async <T>(args: IQueryArgs & { pool: pg.Pool; dbUser?: stri
   const sql = SQL``.append(addTags(args)).append(args.sql);
 
   try {
-    if (args.schema) await dbConnection.query(SQL`SET search_path TO ${args.schema}`);
+    if (args.schema) await dbConnection.query(`SET search_path TO '${args.schema}';`);
 
     const startTime = +new Date();
     const result = await dbConnection.query(sql);
