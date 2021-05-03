@@ -7,4 +7,4 @@ export const splitByUppercase = (s: string) => {
   return sParts;
 };
 
-const splitByUppercases= (s: string) => s.match(/[A-Z][a-z]+/g) as string[];
+const splitByUppercases = (s: string) => s.match(/[A-Z][a-z]+[0-9]|[A-Z][a-z]+/g) as string[];
